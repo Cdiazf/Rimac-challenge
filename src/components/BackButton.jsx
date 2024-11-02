@@ -5,7 +5,7 @@ const BackButton = () => {
 
     // Handler to navigate to /register
     const handleClick = () => {
-        navigate('/register');
+        navigate('/');
     };
 
     return (
