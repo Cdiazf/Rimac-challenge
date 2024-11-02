@@ -81,15 +81,6 @@ const CardPlans = ({ selectedPlan }) => {
                 </div>
                 <hr className="card-plan__separator"/>
                 <div className="card-plan__content">
-                    {/*<ul className="card-plan__description">*/}
-
-                    {/*    {plan.description.map((descItem, descIndex) => (*/}
-                    {/*        <li key={descIndex} className="card-plan__description-item">*/}
-                    {/*            {descItem}*/}
-                    {/*        </li>*/}
-                    {/*    ))}*/}
-
-                    {/*</ul>*/}
 
                     <ul className="card-plan__description">
                         {randomImages.map((imgSrc, index) => {
