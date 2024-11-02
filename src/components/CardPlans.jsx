@@ -3,7 +3,26 @@ import {useFetchPlans} from "../hooks/useFetchPlans.jsx";
 import PropTypes from "prop-types";
 import {useNavigate} from "react-router-dom";
 
+const images = [
+    "/imgs/GlLaptopSolid.png",
+    "/imgs/GlMedicalAttentionSolid.png",
+    "/imgs/GlHospitalSolid.png"
+
+    // Add more images as needed
+];
 const CardPlans = ({ selectedPlan }) => {
+
+// Helper function to get a random unique set of images
+    const getRandomImages = (items, count) => {
+        const shuffled = [...items].sort(() => 0.5 - Math.random()); // Shuffle images
+        return shuffled.slice(0, count); // Return only `count` number of images
+    };
+
+    // Get 3 random images for the 3 list items
+    const randomImages = getRandomImages(images, 3);
+
+
+
 
     const { formatDollar } = useFormatDollar();
     const { plans, loading, error } = useFetchPlans();
@@ -62,15 +81,39 @@ const CardPlans = ({ selectedPlan }) => {
                 </div>
                 <hr className="card-plan__separator"/>
                 <div className="card-plan__content">
+                    {/*<ul className="card-plan__description">*/}
+
+                    {/*    {plan.description.map((descItem, descIndex) => (*/}
+                    {/*        <li key={descIndex} className="card-plan__description-item">*/}
+                    {/*            {descItem}*/}
+                    {/*        </li>*/}
+                    {/*    ))}*/}
+
+                    {/*</ul>*/}
+
                     <ul className="card-plan__description">
+                        {randomImages.map((imgSrc, index) => {
+                            // Only render the li if there's a corresponding description
+                            if (plan.description[index]) {
+                                return (
+                                    <li key={index} className="card-plan__description-item">
+                                        <img
+                                            src={imgSrc}
+                                            alt={`Random Icon ${index + 1}`}
+                                            className="description-icon"
+                                        />
 
-                        {plan.description.map((descItem, descIndex) => (
-                            <li key={descIndex} className="card-plan__description-item">
-                                {descItem}
-                            </li>
-                        ))}
-
+                                        <p>
+                                            {plan.description[index]}
+                                        </p>
+                                    </li>
+                                );
+                            }
+                            return null; // Skip rendering if no description exists
+                        })}
                     </ul>
+
+
                 </div>
                 <div className="card-plan__footer">
                     <button
