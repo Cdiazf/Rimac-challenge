@@ -9,7 +9,7 @@ const ProgressBarSteps = ({ currentStep }) => {
 
     // Handler to navigate to /register
     const handleClick = () => {
-        navigate('/register');
+        navigate('/');
     };
 
     return (
